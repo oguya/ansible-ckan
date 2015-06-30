@@ -1,4 +1,19 @@
 ---
 # file: defaults/main.yml
 
+# ckan user details
+ckan_user: {
+  name: "ckan",
+  system: "yes",
+  home_path: "/usr/lib/ckan",
+  shell: "/sbin/nologin",
+  description: "CKAN User"
+}
+
+# latest stable ckan version
+ckan_version: "2.3"
+
+#default ckan virtualenv path
+ckan_virtualenv: "{{ ckan_user.home_path }}/default"
+
 # vim: set sw=2 ts=2:
