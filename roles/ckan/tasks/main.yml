@@ -1,4 +1,27 @@
 ---
 # file: tasks/main.yml
 
+- name: Install ckan dependencies
+  apt: name={{ item }} update_cache=yes state=latest
+  with_items:
+    - git-core
+    - python-dev
+    - python-pip
+    - python-virtualenv
+
+- name: Upgrade python-pip
+  command: pip install --upgrade pip
+
+- name: Create ckan system user account
+  when: ckan_user is defined
+  user: name={{ ckan_user.name }} system={{ ckan_user.system }} createhome=yes home={{ ckan_user.home_path }} shell={{ ckan_user.shell }} comment={{ ckan_user.description }}
+
+- name: Install ckan
+  sudo_user: ckan
+  pip: name="git+https://github.com/okfn/ckan.git@ckan-{{ ckan_version }}#egg=ckan" virtualenv={{ ckan_virtualenv }}
+
+- name:  Install ckan python modules
+  sudo_user: ckan
+  pip: requirements="{{ ckan_virtualenv }}/src/ckan/requirements.txt" virtualenv={{ ckan_virtualenv }}
+
 # vim: set sw=2 ts=2:
