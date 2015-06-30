@@ -1,0 +1,10 @@
+---
+# file: ckan.yml
+
+- hosts: ckan
+  sudo: yes
+  user: provisioning
+  roles:
+    - ckan
+
+# vim: set sw=2 ts=2:

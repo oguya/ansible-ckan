@@ -1,0 +1,6 @@
+---
+# file: site.yml
+
+- include: ckan.yml
+
+# vim: set sw=2 ts=2:
