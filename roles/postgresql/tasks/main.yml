@@ -4,6 +4,7 @@
 - name: Install postgresql
   apt: name={{ item }} update_cache=yes state=present cache_valid_time=3600
   with_items:
+    - python-psycopg2
     - postgresql-{{ pg_version }}
     - postgresql-client-{{ pg_version }}
   notify:
