@@ -24,4 +24,15 @@
   sudo_user: ckan
   pip: requirements="{{ ckan_virtualenv }}/src/ckan/requirements.txt" virtualenv={{ ckan_virtualenv }}
 
+- name: Create ckan postgresql user
+  sudo_user: postgres
+  postgresql_user: name={{ ckan_db.username }} password={{ ckan_db.password }}
+
+- name: Create ckan postgresql database
+  sudo_user: postgres
+  postgresql_db: name={{ ckan_db.dbname }} encoding='UTF-8' template='template0' owner={{ ckan_db.username }}
+
+- name: Create ckan config dir.
+  file: path={{ ckan_conf_dir }} owner={{ ckan_user.name }} group={{ ckan_user.name }} mode=0755 state=directory
+
 # vim: set sw=2 ts=2:
