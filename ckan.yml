@@ -5,6 +5,7 @@
   sudo: yes
   user: provisioning
   roles:
-    - ckan
+    - solr
+    - postgresql
 
 # vim: set sw=2 ts=2:
