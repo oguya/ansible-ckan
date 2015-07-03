@@ -39,6 +39,20 @@ ckan_smtp_mail_from: "no-reply@yourdomain.com"
 ckan_debug_mode: "false"
 
 #default ckan virtualenv path
-ckan_virtualenv: "{{ ckan_user.home_path }}/default"
+ckan_virtualenv: "{{ ckan_user.home_path }}/{{ ckan_site_name }}"
+
+# postgresql database & user used by ckan
+ckan_db: {
+  username: "ckan_default",
+  password: "h8ds*hzYRE",
+  dbname: "ckan_default",
+  dbhost: "localhost"
+}
+
+# CKAN default site's configs directory
+ckan_conf_dir: "/etc/ckan/{{ ckan_site_name }}"
+
+# CKAN solr URL
+ckan_solr_url: "http://127.0.0.1:8983/solr/ckan_default"
 
 # vim: set sw=2 ts=2:
