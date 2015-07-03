@@ -1,4 +1,10 @@
 ---
 # file: handlers/main.yml
 
+- name: reload apache2
+  service: name=apache2 state=reloaded
+
+- name: reload solr
+  service: name=solr state=restarted
+
 # vim: set sw=2 ts=2:
