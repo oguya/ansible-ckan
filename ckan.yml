@@ -4,6 +4,8 @@
 - hosts: ckan
   sudo: yes
   user: provisioning
+  vars_files:
+    - vars/all.yml
   roles:
     - solr
     - postgresql
