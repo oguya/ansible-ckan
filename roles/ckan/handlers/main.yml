@@ -7,4 +7,7 @@
 - name: reload solr
   service: name=solr state=restarted
 
+- name: reload nginx
+  service: name=nginx state=reloaded
+
 # vim: set sw=2 ts=2:
