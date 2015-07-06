@@ -4,3 +4,12 @@
 # since we'll have nginx on the front(80),
 # we need to set apache2 to listen to another port(8080)
 apache2_http_port: 8080
+
+# default solr core used by CKAN
+solr_cores:
+    - ckan_default
+
+# will contain solr log files, core(s)
+solr_var_dir: /var/solr
+
+# vim: set sw=2 ts=2:
