@@ -1,0 +1,30 @@
+---
+# file: host_vars/solr-sample-host
+
+# ip address/hostname of the remote host
+ansible_ssh_host: 192.168.1.4
+
+# you can override values specified in defaults/main.yml - role-default
+# variables - in groups vars or host vars files as shown below:
+
+# port which solr will listen & serve requests from
+solr_port: 8983
+
+# solr system user, also owner of solr files/dirs
+solr_user: {
+  name: "solr",
+  system: "yes",
+  home_path: "/home/solr",
+  description: "SOLR User"
+}
+
+# solr java min/max memory heap allocation sizes
+solr_java_mem: "-Xms2048m -Xmx2048m"
+
+# solr cores to be created/managed
+solr_cores:
+    - ckan_default
+    - ckan_portal_core
+    - fts_app
+
+# vim: set sw=2 ts=2:
