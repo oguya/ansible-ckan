@@ -5,6 +5,7 @@
   apt: name={{ item }} update_cache=yes state=latest
   with_items:
     - git-core
+    - libpq-dev
     - python-dev
     - python-pip
     - python-virtualenv
