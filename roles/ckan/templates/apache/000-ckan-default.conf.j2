@@ -13,7 +13,7 @@
 
         # apache 2.4: https://httpd.apache.org/docs/2.4/upgrading.html#access
         # "AH01630: client denied by server configuration: /etc/ckan/default/apache.wsgi"
-        <Directory /etc/ckan/default>
+        <Directory {{ ckan_conf_dir }}>
             Options All
             AllowOverride All
             Require all granted
