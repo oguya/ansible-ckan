@@ -36,4 +36,28 @@
 - name: Create ckan config dir.
   file: path={{ ckan_conf_dir }} owner={{ ckan_user.name }} group={{ ckan_user.name }} mode=0755 state=directory
 
+# NOTE: Add production.ini template
+- name: Copy ckan production.ini config file
+  template: src="production-{{ ckan_version }}.ini.j2" dest="{{ ckan_conf_dir }}/production.ini" owner={{ ckan_user.name }} group={{ ckan_user.name }} mode=0644
+  notify: reload apache2
+
+- name: Generate beaker secret token
+  command: "{{ ckan_virtualenv }}/bin/python -c 'from paste.script.util import secret; print secret.secret_string()'"
+  register: beaker_secret_token
+
+- name: Set beaker.session.secret in production.ini
+  lineinfile: regexp="^beaker\.session\.secret\ =$" line="beaker.session.secret = {{ beaker_secret_token.stdout }}" dest="{{ ckan_conf_dir }}/production.ini" backrefs=yes state=present
+  when: beaker_secret_token is defined
+
+- name: Generate ckan aplication instance UUID
+  command: "{{ ckan_virtualenv }}/bin/python -c 'from paste.script.util import uuid; print uuid.uuid4()'"
+  register: app_instance_uuid
+
+- name: Set app_instance_uuid in production.ini
+  lineinfile: regexp="^app_instance_uuid =$" line="app_instance_uuid = {{ app_instance_uuid.stdout }}" dest="{{ ckan_conf_dir }}/production.ini" backrefs=yes state=present
+  when: app_instance_uuid is defined
+
+- name: Symlink who.ini to ckan config. dir
+  file: src="{{ ckan_virtualenv }}/src/ckan/who.ini" dest="{{ ckan_conf_dir }}/who.ini" owner={{ ckan_user.name }} group={{ ckan_user.name }} state=link
+
 # vim: set sw=2 ts=2:
