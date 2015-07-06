@@ -1,0 +1,20 @@
+---
+# file: host_vars/db-sample-host
+
+# ip address/hostname of the remote host
+ansible_ssh_host: 192.168.1.3
+
+# you can override values specified in defaults/main.yml - role-default
+# variables - in groups vars or host vars files as shown below:
+
+# IP address/hostname on which postgresql will listen
+# for connections on
+pg_listen_addresses: "{{ ansible_ssh_host }}, localhost"
+
+# host connection details allowed to connect to postgresql server
+# See http://www.postgresql.org/docs/9.1/static/auth-pg-hba-conf.html
+pg_db_connections:
+  - { type: "host", db: "all", user: "all", src_addr: "192.168.1.0/24", method: "md5" }
+  - { type: "host", db: "all", user: "all", src_addr: "127.0.0.1/32", method: "md5" }
+
+# vim: set sw=2 ts=2:
