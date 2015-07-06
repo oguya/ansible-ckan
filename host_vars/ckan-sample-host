@@ -1,0 +1,42 @@
+---
+# file: host_vars/ckan-sample-host
+
+# ip address/hostname of the remote host
+ansible_ssh_host: 192.168.1.2
+
+# you can override values specified in defaults/main.yml - role-default
+# variables - in groups vars or host vars files as shown below:
+
+# latest stable ckan version
+ckan_version: "2.2"
+
+# CKAN site name
+ckan_site_name: "portal.your-company.org"
+
+# CKAN site URL
+ckan_site_url: "http://{{ ckan_site_name }}"
+
+# CKAN site title
+ckan_site_title: "Your-Company Data Portal"
+
+# CKAN site description
+ckan_site_description: "Sample description for Your-Company's data management e.t.c."
+
+# CKAN postgresql database & user used by ckan
+ckan_db: {
+  username: "ckan_portal",
+  password: ">C4fMsJb.*Va-rV2",
+  dbname: "ckan_portal",
+  dbhost: "192.168.1.3"
+}
+
+# CKAN solr core name
+ckan_solr_core_name: "ckan_portal_core"
+
+# solr hostname/ip address
+ckan_sorl_host: "192.168.1.4"
+
+# CKAN solr core URL - derived from solr_host & solr_core_name
+ckan_solr_url: "http://{{ ckan_sorl_host }}:8983/solr/{{ ckan_solr_core_name }}"
+
+# vim: set sw=2 ts=2:
