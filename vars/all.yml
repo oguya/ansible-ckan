@@ -12,4 +12,7 @@ solr_cores:
 # will contain solr log files, core(s)
 solr_var_dir: /var/solr
 
+# postgresql(DB) server ip/hostname
+pg_db_server: localhost
+
 # vim: set sw=2 ts=2:

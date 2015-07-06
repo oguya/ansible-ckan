@@ -46,7 +46,7 @@ ckan_db: {
   username: "ckan_default",
   password: "h8ds*hzYRE",
   dbname: "ckan_default",
-  dbhost: "localhost"
+  dbhost: "{{ pg_db_server }}"
 }
 
 # CKAN default site's configs directory
