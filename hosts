@@ -2,16 +2,16 @@
 # apache, nginx & ckan will be deployed to hosts in this(ckan) group
 [ckan]
 ckan01
-ckan-sample-host
+#ckan-sample-host
 
 # database(postgresql) server(s).
 # postgresql will be deployed to hosts in this(db) group
 [db]
 ckan01
-db-sample-host
+#db-sample-host
 
 # solr server(s)
 # solr will be deployed to hosts in this(solr) group
 [solr]
 ckan01
-solr-sample-host
+#solr-sample-host
