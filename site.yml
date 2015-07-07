@@ -1,6 +1,8 @@
 ---
 # file: site.yml
 
+- include: solr.yml
+- include: postgresql.yml
 - include: ckan.yml
 
 # vim: set sw=2 ts=2:

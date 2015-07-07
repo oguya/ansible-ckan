@@ -1,14 +1,12 @@
 ---
-# file: ckan.yml
+# file: db.yml
 
-- hosts: ckan
+- hosts: db
   sudo: yes
   user: provisioning
   vars_files:
     - vars/all.yml
   roles:
-    - apache
-    - nginx
-    - ckan
+    - postgresql
 
 # vim: set sw=2 ts=2:
