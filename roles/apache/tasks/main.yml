@@ -10,7 +10,11 @@
 
 - name: Configure apache2 ports
   template: src="ports.conf.j2" dest="/etc/apache2/ports.conf" owner=root group=root mode=0644
-  notify: reload apache2
+  register: reload_apache
+
+- name: Restart apache2 service
+  when: reload_apache is defined and reload_apache|changed
+  service: name=apache2 state=restarted
 
 - name: Enable mod-wsgi & mod-rpaf apache2 modules
   command: /usr/sbin/a2enmod {{ item.mod }} creates={{ item.link }}
