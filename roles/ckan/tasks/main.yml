@@ -19,7 +19,7 @@
 
 - name: Install ckan
   sudo_user: "{{ ckan_user.name }}"
-  pip: name="git+https://github.com/okfn/ckan.git@ckan-{{ ckan_version }}#egg=ckan" virtualenv={{ ckan_virtualenv }}
+  pip: name="{{ckan_src_url}}" virtualenv={{ ckan_virtualenv }}
 
 - name:  Install ckan python modules
   sudo_user: "{{ ckan_user.name }}"
