@@ -15,3 +15,53 @@ This playbook is broken down the following several parts/roles, each doing a min
 
 > **NOTE**<br/>
 > `apache`, `nginx` & `ckan` roles can all be grouped in one group – _ckan_ – & usually deployed on one host in production & test environments whereas `postgresql` & `solr` roles are in separate groups – _db_ & _solr_ respectively – and usually deployed on separate hosts too.
+
+### Usage
+
+- clone this repo:
+
+        git clone https://github.com/oguya/ansible-ckan.git
+        cd ansible-ckan
+
+- Add your `db`, `solr` and `ckan` host(s) in the [inventory](http://docs.ansible.com/intro_inventory.html) `hosts` file, for example: `ckan01` host belongs to the `ckan`, `db` and `solr` groups - for more info about these groups, see sample host variables files in [host_vars](https://github.com/oguya/ansible-ckan/tree/master/host_vars) directory:
+
+        [ckan]
+        ckan01
+
+        [db]
+        ckan01
+
+        [solr]
+        ckan01
+
+- dry run all the playbooks:
+
+        ansible-playbook site.yml -K --check
+
+- deploy CKAN & its dependencies(solr, postgresql, nginx & apache) on `ckan01` host:
+
+        ansible-playbook site.yml -K -i hosts --limit=ckan01
+
+- install & configure solr 5.2.x on `ckan01` host:
+
+        ansible-playbook solr.yml -K -i hosts --limit=ckan01
+
+- install & configure postgresql-9.3 on `ckan01` host:
+
+        ansible-playbook db.yml -K -i hosts --limit=ckan01
+
+- deploy CKAN on `ckan01` host:
+
+        ansible-playbook ckan.yml -K -i hosts --limit=ckan01
+
+### Assumptions
+I took into assumption, a few key items when running this playbook:
+- you have a provisioning user account - `provisioning` - with passwordless SSH access to the target host
+- the provisioning user has sudo privileges on the remote host
+- you installing CKAN & its dependencies(solr, postgresql, nginx & apache) on one target host - [ckan01](https://github.com/oguya/ansible-ckan/blob/master/host_vars/ckan01)
+
+### References
+A few roles in this playbook e.g. postgresql, solr & nginx have been borrowed from [ILRI's rmg-ansible-public repo](https://github.com/ilri/rmg-ansible-public).
+
+### Contribution
+[Pull requests](https://github.com/oguya/ansible-ckan/issues) and [Github issues](https://github.com/oguya/ansible-ckan/issues) are all welcome!
