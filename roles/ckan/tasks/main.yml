@@ -19,11 +19,11 @@
 
 - name: Install ckan
   sudo_user: "{{ ckan_user.name }}"
-  pip: name="{{ckan_src_url}}" virtualenv={{ ckan_virtualenv }}
+  pip: name="{{ckan_src_url}}" virtualenv={{ ckan_virtualenv }} state=present
 
 - name:  Install ckan python modules
   sudo_user: "{{ ckan_user.name }}"
-  pip: requirements="{{ ckan_virtualenv }}/src/ckan/requirements.txt" virtualenv={{ ckan_virtualenv }}
+  pip: requirements="{{ ckan_virtualenv }}/src/ckan/requirements.txt" virtualenv={{ ckan_virtualenv }} state=present
 
 - name: Create ckan postgresql user
   sudo_user: postgres
