@@ -55,6 +55,15 @@ ckan_db: {
 # CKAN default site's configs directory
 ckan_conf_dir: "/etc/ckan/{{ ckan_site_name }}"
 
+# directory in which CKAN will store all uploaded data
+ckan_storage_path: "/var/lib/ckan/{{ckan_site_name}}"
+
+# CKAN Maximum resource upload size in MB
+ckan_max_resource_size: 10
+
+# maximum  image upload size in MB
+ckan_max_image_size: 2
+
 # CKAN solr URL
 ckan_solr_url: "http://127.0.0.1:8983/solr/ckan_default"
 
