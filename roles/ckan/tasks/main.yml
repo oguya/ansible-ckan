@@ -60,20 +60,21 @@
 - name: Symlink who.ini to ckan config. dir
   file: src="{{ ckan_virtualenv }}/src/ckan/who.ini" dest="{{ ckan_conf_dir }}/who.ini" owner={{ ckan_user.name }} group={{ ckan_user.name }} state=link
 
-## TODO: find a way of running paster & make it idempotent - maybe touch a file ??
-## paster db init -c /etc/ckan/default/production.ini
-#- name: Initialize ckan postgresql database
-#  sudo_user: "{{ckan_user.name}}"
-#  command: "{{ ckan_virtualenv }}/bin/paster db init -c {{ ckan_conf_dir }}/production.ini"
-#  args:
-#    chdir: "{{ ckan_virtualenv }}/src/ckan"
-
 ## TODO: copy solr schema.xml. what about multi-core/multi-ckan instances ??
 - name: Configure solr core used by ckan
-  command: /bin/cp -a {{ ckan_virtualenv }}/src/ckan/ckan/config/solr/schema.xml {{ solr_var_dir }}/data/{{ item }}/conf/schema.xml creates={{ solr_var_dir }}/data/{{ item }}/conf/schema.xml
+#  command: /bin/cp -a {{ ckan_virtualenv }}/src/ckan/ckan/config/solr/schema.xml {{ solr_var_dir }}/data/{{ item }}/conf/schema.xml creates={{ solr_var_dir }}/data/{{ item }}/conf/schema.xml
+  command: /bin/cp -a {{ ckan_virtualenv }}/src/ckan/ckan/config/solr/schema.xml {{ solr_var_dir }}/data/{{ item }}/conf/schema.xml
   notify: reload solr
   with_items: solr_cores
   tags: solr
+
+## TODO: find a way of running paster & make it idempotent - maybe touch a file ??
+- name: Initialize ckan postgresql database
+  sudo_user: "{{ckan_user.name}}"
+  command: "{{ ckan_virtualenv }}/bin/paster --plugin=ckan db init -c {{ ckan_conf_dir }}/production.ini"
+#  command: "{{ ckan_virtualenv }}/bin/paster db init -c {{ ckan_conf_dir }}/production.ini"
+#  args:
+#    chdir: "{{ ckan_virtualenv }}/src/ckan"
 
 - name: Create apache2 default vhost for ckan
   template: src="apache/000-ckan-default.conf.j2" dest="/etc/apache2/sites-available/000-default.conf" owner=root group=root mode=0644
