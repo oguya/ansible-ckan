@@ -8,7 +8,7 @@
   apt_key: url="https://www.postgresql.org/media/keys/ACCC4CF8.asc" state=present
 
 - name: Install postgresql
-  apt: name={{ item }} update_cache=yes state=present cache_valid_time=3600
+  apt: name={{ item }} update_cache=yes state=present
   with_items:
     - python-psycopg2
     - postgresql-{{ pg_version }}
