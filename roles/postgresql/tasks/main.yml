@@ -1,6 +1,12 @@
 ---
 # file: tasks/main.yml
 
+- name: Add PGDG apt list file
+  template: src=pgdg.list.j2 dest=/etc/apt/sources.list.d/pgdg.list owner=root group=root mode=0644
+
+- name: Import PGDG repo keys
+  apt_key: url="https://www.postgresql.org/media/keys/ACCC4CF8.asc" state=present
+
 - name: Install postgresql
   apt: name={{ item }} update_cache=yes state=present cache_valid_time=3600
   with_items:
