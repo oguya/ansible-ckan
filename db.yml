@@ -7,6 +7,6 @@
   vars_files:
     - vars/all.yml
   roles:
-    - postgresql
+    - { role: postgresql, when: ansible_distribution == "Ubuntu", tags: postgresql }
 
 # vim: set sw=2 ts=2:
