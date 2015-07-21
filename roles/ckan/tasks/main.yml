@@ -28,10 +28,12 @@
 - name: Create ckan postgresql user
   sudo_user: postgres
   postgresql_user: name={{ ckan_db.username }} password={{ ckan_db.password }}
+  tags: postgresql
 
 - name: Create ckan postgresql database
   sudo_user: postgres
   postgresql_db: name={{ ckan_db.dbname }} encoding='UTF-8' template='template0' owner={{ ckan_db.username }}
+  tags: postgresql
 
 - name: Create ckan config dir.
   file: path={{ ckan_conf_dir }} owner={{ ckan_user.name }} group={{ ckan_user.name }} mode=0755 state=directory
