@@ -6,7 +6,6 @@
   with_items:
     - unzip
     - tar
-  tags: packages
 
 - name: Add Oracle Java PPA
   apt_repository: repo='ppa:webupd8team/java' state=present
