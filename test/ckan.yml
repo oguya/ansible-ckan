@@ -1,0 +1,14 @@
+---
+# file: ckan.yml
+
+- hosts: ckan
+  sudo: yes
+  remote_user: root
+  vars_files:
+    - vars/all.yml
+  roles:
+    - { role: apache, when: ansible_distribution == "Ubuntu", tags: apache }
+    - { role: nginx, when: ansible_distribution == "Ubuntu", tags: nginx }
+    - { role: ckan, when: ansible_distribution == "Ubuntu", tags: ckan }
+
+# vim: set sw=2 ts=2:

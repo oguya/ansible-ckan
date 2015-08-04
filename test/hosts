@@ -1,0 +1,14 @@
+# ckan server(s)
+# apache, nginx & ckan will be deployed to hosts in this(ckan) group
+[ckan]
+localhost
+
+# database(postgresql) server(s).
+# postgresql will be deployed to hosts in this(db) group
+[db]
+localhost
+
+# solr server(s)
+# solr will be deployed to hosts in this(solr) group
+[solr]
+localhost

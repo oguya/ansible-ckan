@@ -1,0 +1,12 @@
+---
+# file: solr.yml
+
+- hosts: solr
+  sudo: yes
+  remote_user: root
+  vars_files:
+    - vars/all.yml
+  roles:
+    - { role: solr, when: ansible_distribution == "Ubuntu", tags: solr }
+
+# vim: set sw=2 ts=2:
