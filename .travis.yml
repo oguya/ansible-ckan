@@ -1,0 +1,35 @@
+---
+language: python
+python: "2.7"
+sudo: required
+
+# environment variables
+env:
+  - ANSIBLE_INVENTORY=hosts
+  - DEFAULT_SOLR_PORT=8983
+
+# update indices, install dependencies
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get install -y python-dev python-pip gcc git
+
+# update pip & install ansible from pip
+install:
+  - pip install --upgrade pip
+  - pip install ansible
+
+# run tests
+script:
+  # Run syntax checks
+  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --syntax-check"
+
+  # Run the all the playbooks to install & setup vanilla ckan
+  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local"
+
+  # Test solr installation by curling solr web administration page
+  # & netcating its port
+  - "/usr/bin/curl -I http://localhost:$DEFAULT_SOLR_PORT"
+  - "echo | nc -v localhost $DEFAULT_SOLR_PORT"
+
+  # Test postgresql
+# vim: set sw=2 ts=2:
