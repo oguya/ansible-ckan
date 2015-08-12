@@ -23,8 +23,6 @@ script:
   # Run syntax checks
   - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --syntax-check"
 
-  # Run the all the playbooks to install & setup vanilla ckan
-  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local"
 
   # Test solr installation by curling solr web administration page
   # & netcating its port
