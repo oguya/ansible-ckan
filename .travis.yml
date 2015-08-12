@@ -31,5 +31,8 @@ script:
   - "/usr/bin/curl -I http://localhost:$DEFAULT_SOLR_PORT"
   - "echo | nc -v localhost $DEFAULT_SOLR_PORT"
 
-  # Test postgresql
+  ## Test PostgreSQL Installation
+  # Test postgresql role
+  - "ansible-playbook tests/db.yml -i tests/hosts --connection=local"
+
 # vim: set sw=2 ts=2:
