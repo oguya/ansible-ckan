@@ -23,9 +23,11 @@ script:
   # Run syntax checks
   - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --syntax-check"
 
+  ## Test Solr Installation
+  # Test solr role
+  - "ansible-playbook tests/solr.yml -i tests/hosts --connection=local"
 
-  # Test solr installation by curling solr web administration page
-  # & netcating its port
+  # Curl solr web administration page & netcating its port
   - "/usr/bin/curl -I http://localhost:$DEFAULT_SOLR_PORT"
   - "echo | nc -v localhost $DEFAULT_SOLR_PORT"
 
