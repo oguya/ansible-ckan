@@ -7,6 +7,7 @@ sudo: required
 env:
   - ANSIBLE_INVENTORY=hosts
   - DEFAULT_SOLR_PORT=8983
+  - DEFAULT_POSTGRES_PORT=5432
 
 # update indices, install dependencies
 before_install:
@@ -34,5 +35,6 @@ script:
   ## Test PostgreSQL Installation
   # Test postgresql role
   - "ansible-playbook tests/db.yml -i tests/hosts --connection=local"
+  - "echo |nc -v localhost $DEFAULT_POSTGRES_PORT"
 
 # vim: set sw=2 ts=2:
