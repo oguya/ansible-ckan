@@ -8,6 +8,8 @@ env:
   - ANSIBLE_INVENTORY=hosts
   - DEFAULT_SOLR_PORT=8983
   - DEFAULT_POSTGRES_PORT=5432
+  - DEFAULT_APACHE_PORT=8080
+  - DEFAULT_NGINX_PORT=80
 
 # update indices, install dependencies
 before_install:
