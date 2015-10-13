@@ -32,11 +32,11 @@ script:
 
   # Curl solr web administration page & netcating its port
   - "/usr/bin/curl -I http://localhost:$DEFAULT_SOLR_PORT"
-  - "echo | nc -v localhost $DEFAULT_SOLR_PORT"
+  - "echo | nc -v 127.0.0.1 $DEFAULT_SOLR_PORT"
 
   ## Test PostgreSQL Installation
   # Test postgresql role
   - "ansible-playbook tests/db.yml -i tests/hosts --connection=local"
-  - "echo | nc -v localhost $DEFAULT_POSTGRES_PORT"
+  - "echo | nc -v 127.0.0.1 $DEFAULT_POSTGRES_PORT"
 
 # vim: set sw=2 ts=2:
