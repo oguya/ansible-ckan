@@ -1,4 +1,5 @@
 ## CKAN Ansible Playbook
+[![Build Status](https://travis-ci.org/oguya/ansible-ckan.svg)](https://travis-ci.org/oguya/ansible-ckan)
 
 This is an ansible playbook for building and minimally deploying [CKAN](http://ckan.org/) on Ubuntu 14.04 host. This playbook tries as much as possible to follow [the recommended way of installing CKAN from source](http://docs.ckan.org/en/latest/maintaining/installing/install-from-source.html) while adhering to [Ansible best practices](http://docs.ansible.com/playbooks_best_practices.html).
 After successfully running this playbook, there are some additional tasks which must be run manually such as initializing databases, copying site theme, content e.t.c.
