@@ -40,19 +40,17 @@ script:
   - "ansible-playbook tests/db.yml -i tests/hosts --connection=local"
   - "echo | nc -v 127.0.0.1 $DEFAULT_POSTGRES_PORT"
 
-  ## Test Apache Installation
-  # Test apache role
-  - "ansible-playbook tests/ckan.yml -i tests/hosts --tags=apache --connection=local"
-  - "echo | nc -v 127.0.0.1 $DEFAULT_APACHE_PORT"
-
   ## Test Nginx Installation
   # Test nginx role
   - "ansible-playbook tests/ckan.yml -i tests/hosts --tags=nginx --connection=local"
   - "echo | nc -v 127.0.0.1 $DEFAULT_NGINX_PORT"
 
-  ## Test CKAN Installation
+  ## Test Apache & CKAN Installation
+  # Test apache role
+  - "ansible-playbook tests/ckan.yml -i tests/hosts --connection=local"
+  - "echo | nc -v 127.0.0.1 $DEFAULT_APACHE_PORT"
+
   # Test ckan role
-  - "ansible-playbook tests/ckan.yml -i tests/hosts --tags=ckan --connection=local"
   - "curl -Is http://127.0.0.1/ | grep 'HTTP/1.1 200 OK'"
 
 # vim: set sw=2 ts=2:
