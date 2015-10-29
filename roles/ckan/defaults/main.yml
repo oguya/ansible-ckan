@@ -17,7 +17,7 @@ ckan_version: "2.3"
 ckan_src_url: "git+https://github.com/okfn/ckan.git@ckan-{{ ckan_version }}#egg=ckan"
 
 # CKAN default site name
-ckan_site_name: "ckan.localhost.localdomain"
+ckan_site_name: "{{ ansible_ssh_host}}.nip.io"
 
 # CKAN site URL
 ckan_site_url: "http://{{ ckan_site_name }}"
