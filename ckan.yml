@@ -2,7 +2,7 @@
 # file: ckan.yml
 
 - hosts: ckan
-  sudo: yes
+  become: yes
   user: provisioning
   vars_files:
     - vars/all.yml

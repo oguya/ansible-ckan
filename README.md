@@ -37,23 +37,23 @@ This playbook is broken down the following several parts/roles, each doing a min
 
 - dry run all the playbooks:
 
-        ansible-playbook site.yml -K --check
+        ansible-playbook site.yml --ask-become-pass --check
 
 - deploy CKAN & its dependencies(solr, postgresql, nginx & apache) on `ckan01` host:
 
-        ansible-playbook site.yml -K -i hosts --limit=ckan01
+        ansible-playbook site.yml --ask-become-pass -i hosts --limit=ckan01
 
 - install & configure solr 5.2.x on `ckan01` host:
 
-        ansible-playbook solr.yml -K -i hosts --limit=ckan01
+        ansible-playbook solr.yml --ask-become-pass -i hosts --limit=ckan01
 
 - install & configure postgresql-9.3 on `ckan01` host:
 
-        ansible-playbook db.yml -K -i hosts --limit=ckan01
+        ansible-playbook db.yml --ask-become-pass -i hosts --limit=ckan01
 
 - deploy CKAN on `ckan01` host:
 
-        ansible-playbook ckan.yml -K -i hosts --limit=ckan01
+        ansible-playbook ckan.yml --ask-become-pass -i hosts --limit=ckan01
 
 ### Assumptions
 I took into assumption, a few key items when running this playbook:

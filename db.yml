@@ -2,7 +2,7 @@
 # file: db.yml
 
 - hosts: db
-  sudo: yes
+  become: yes
   user: provisioning
   vars_files:
     - vars/all.yml
