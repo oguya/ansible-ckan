@@ -70,7 +70,7 @@
 #  command: /bin/cp -a {{ ckan_virtualenv }}/src/ckan/ckan/config/solr/schema.xml {{ solr_var_dir }}/data/{{ item }}/conf/schema.xml creates={{ solr_var_dir }}/data/{{ item }}/conf/schema.xml
   command: /bin/cp -a {{ ckan_virtualenv }}/src/ckan/ckan/config/solr/schema.xml {{ solr_var_dir }}/data/{{ item }}/conf/schema.xml
   notify: reload solr
-  with_items: solr_cores
+  with_items: "{{ solr_cores }}"
   tags: solr
 
 ## TODO: find a way of running paster & make it idempotent - maybe touch a file ??
