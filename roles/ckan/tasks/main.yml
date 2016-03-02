@@ -18,20 +18,20 @@
   user: name={{ ckan_user.name }} system={{ ckan_user.system }} createhome=yes home={{ ckan_user.home_path }} shell={{ ckan_user.shell }} comment="{{ckan_user.description}}"
 
 - name: Install ckan
-  sudo_user: "{{ ckan_user.name }}"
+  become_user: "{{ ckan_user.name }}"
   pip: name="{{ckan_src_url}}" virtualenv={{ ckan_virtualenv }} state=present
 
 - name:  Install ckan python modules
-  sudo_user: "{{ ckan_user.name }}"
+  become_user: "{{ ckan_user.name }}"
   pip: requirements="{{ ckan_virtualenv }}/src/ckan/requirements.txt" virtualenv={{ ckan_virtualenv }} state=present
 
 - name: Create ckan postgresql user
-  sudo_user: postgres
+  become_user: postgres
   postgresql_user: name={{ ckan_db.username }} password={{ ckan_db.password }}
   tags: postgresql
 
 - name: Create ckan postgresql database
-  sudo_user: postgres
+  become_user: postgres
   postgresql_db: name={{ ckan_db.dbname }} encoding='UTF-8' template='template0' owner={{ ckan_db.username }}
   tags: postgresql
 
@@ -75,7 +75,7 @@
 
 ## TODO: find a way of running paster & make it idempotent - maybe touch a file ??
 - name: Initialize ckan postgresql database
-  sudo_user: "{{ckan_user.name}}"
+  become_user: "{{ckan_user.name}}"
   command: "{{ ckan_virtualenv }}/bin/paster --plugin=ckan db init -c {{ ckan_conf_dir }}/production.ini"
 #  command: "{{ ckan_virtualenv }}/bin/paster db init -c {{ ckan_conf_dir }}/production.ini"
 #  args:
