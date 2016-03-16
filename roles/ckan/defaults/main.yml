@@ -11,7 +11,7 @@ ckan_user: {
 }
 
 # latest stable ckan version
-ckan_version: "2.3"
+ckan_version: "2.4.1"
 
 # Link/URL to download ckan sources
 ckan_src_url: "git+https://github.com/okfn/ckan.git@ckan-{{ ckan_version }}#egg=ckan"
