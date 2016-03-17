@@ -12,7 +12,7 @@
   tags: java
 
 - name: Accept Oracle license
-  shell: echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
+  debconf: name='oracle-java7-installer' question='shared/accepted-oracle-license-v1-1' value='true' vtype='select'
   tags: java
 
 - name: Install Oracle Java 8
