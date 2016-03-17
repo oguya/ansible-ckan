@@ -40,7 +40,7 @@
 
 # NOTE: Add production.ini template
 - name: Copy ckan production.ini config file
-  template: src="production-{{ ckan_version }}.ini.j2" dest="{{ ckan_conf_dir }}/production.ini" owner={{ ckan_user.name }} group={{ ckan_user.name }} mode=0644
+  template: src="production-{{ ckan_release }}.ini.j2" dest="{{ ckan_conf_dir }}/production.ini" owner={{ ckan_user.name }} group={{ ckan_user.name }} mode=0644
   notify: reload apache2
 
 - name: Create ckan data uploads dir.

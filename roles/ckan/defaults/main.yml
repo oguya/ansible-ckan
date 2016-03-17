@@ -10,8 +10,11 @@ ckan_user: {
   description: "CKAN User"
 }
 
-# latest stable ckan version
+# ckan major-minor version no.
 ckan_version: "2.4.1"
+
+# ckan major release version no.
+ckan_release: "2.4"
 
 # Link/URL to download ckan sources
 ckan_src_url: "git+https://github.com/okfn/ckan.git@ckan-{{ ckan_version }}#egg=ckan"
